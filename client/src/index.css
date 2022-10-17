@@ -22,6 +22,7 @@ code {
   background-color: rgb(47, 47, 66);
   margin-top: 10px;
   color: wheat;
+  font-weight: bold;
   height: 40px;
   width: 100px;
   cursor: pointer;
@@ -30,6 +31,7 @@ code {
 }
 .Envoyer:hover{
   color: white;
+  transform: scale(1.1);
 }
 .container{
   margin-top: 50px;
