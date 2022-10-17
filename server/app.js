@@ -3,15 +3,8 @@ var http = require('http'),
     url = require('url'),
     fs = require('fs');
 
-    var messages = [&quot;testing&quot;];
+    var messages = ['&quot;testing&quot;'];
 var clients = [];
-
-//Hello world
-
-http.createServer(function (req, res) {
-    res.end("Hello world");
- }).listen(8080, 'localhost');
- console.log('Server running.');
 
  //API FS
 
@@ -54,11 +47,12 @@ http.createServer(function (req, res) {
 
  var count = url_parts.pathname.replace(/[^0-9]*/, '');
 console.log(count);
+
 if(messages.length > count) {
   res.end(JSON.stringify( {
     count: messages.length,
-    append: messages.slice(count).join(&quot;\n&quot;)+&quot;\n&quot;
-  }));
+    append: messages.slice(count).join('&quot;\n&quot;)+&quot;\n&quot')
+  }))
 } else {
   clients.push(res);
   
