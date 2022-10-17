@@ -5,7 +5,7 @@ function FormClient (){
     return(
         <div className="container">
             <form action="Form">
-                <input type="text" className="input" placeholder="Entrez votre message"/>
+                <textarea type="text" className="input" placeholder="Entrez votre message"></textarea>
             </form>
             <button className="Envoyer">Envoyer</button>
 
