@@ -26,8 +26,11 @@ code {
   width: 100px;
   cursor: pointer;
   border-radius: 10px;
-  box-shadow: 10px 5px 5px rgb(75, 72, 72);
+  box-shadow: 10px 5px 5px  rgb(75, 72, 72);
 }
 .Envoyer:hover{
   color: white;
+}
+.container{
+  margin-top: 50px;
 }
