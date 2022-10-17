@@ -71,3 +71,6 @@ if(messages.length > count) {
   }
   res.end();
 } */}
+
+server.listen(8080, () => console.log(`Server started successfuly ok`));
+
