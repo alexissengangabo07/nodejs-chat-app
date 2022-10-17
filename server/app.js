@@ -2,67 +2,32 @@ import http from 'http';
 import fs from 'fs';
 import url from 'url';
 
-var messages = ["testing"];
-var clients = [];
+let messages = ["Message de test depuis le serveur"];
+let clients = [];
+const PORT = process.env.PORT || 5000;
 
 const server = http.createServer((req, res) => {
-    var url_parts = url.parse(req.url);
-    console.log(url_parts);
-    if (url_parts.pathname == '/') {
-        // file serving
-        fs.readFile('./index.html', function (err, data) {
-            res.end(data);
-        });
-    } else if (url_parts.pathname.substr(0, 5) == '/poll') {
-        // polling code here
-
-
-        var count = url_parts.pathname.replace(/[^0-9]*/, '');
-        console.log(count);
-        if (messages.length > count) {
-            res.end(JSON.stringify({
-                count: messages.length,
-                append: messages.slice(count).join("")
-            }));
-        }
-        else if (url_parts.pathname.substr(0, 5) == '/msg/') {
-            // message receiving
-            var msg = unescape(url_parts.pathname.substr(5));
-            messages.push(msg);
-            while (clients.length > 0) {
-                var client = clients.pop();
-                client.end(JSON.stringify({
-                    count: messages.length,
-                    append: msg + ""
-                }));
-            }
-            res.end();
-        }
-        else {
-            clients.push(res);
-        }
-
-
-
-    }
-});
-
-server.on('request', (req, res) => {
-    console.log("Server request");
-
     const headers = {
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE",
         "Access-Control-Max-Age": 2592000
     };
 
-    fs.readFile('index.html', (err, data) => {
-        if (err) throw err;
-        // res.writeHead(200, { 'Content-Type': 'text/html' });
-        // res.write(data);
-        // return res.end();
-        res.end(data);
-    });
+    if (req.url === "/home" && req.method === "GET") {
+        res.writeHead(200, headers);
+        res.write("Salut, Vous etes sur la route ACCEUIL");
+        res.end();
+    }
+    else if (req.url === "/message" && req.method === "GET") {
+        res.writeHead(200, headers);
+        res.write("Salut, Vous etes sur la route MESSAGE");
+        res.end();
+    }
+    else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Route not found" }));
+    }
 });
 
-server.listen(8000, () => console.log("Connected Hello World!"));
+server.listen(PORT, () => console.log("Connected Hello World!"));
