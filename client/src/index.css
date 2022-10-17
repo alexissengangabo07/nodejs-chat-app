@@ -14,5 +14,11 @@ code {
 }
 .input{
   margin-top: 20px;
-  height: ;
+  height: 100px;
+  border-radius: 10px;
+}
+.Envoyer{
+  background-color: rgb(47, 47, 66);
+  margin-top: 20px;
+  color: wheat;
 }
