@@ -1,12 +1,25 @@
 <html>
-    <head>
-      <script src=&quot;http://code.jquery.com/jquery-1.6.4.min.js&quot;></script>
-      <script>
-      // client code here
-      </script>
-    </head>
-    <body>
-     <textarea id=&quot;output&quot; style=&quot;width: 100%; height: 100%;&quot;>
-     </textarea>
-    </body>
-    </html>
+
+<head>
+  <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+</head>
+
+<body>
+  <textarea id="output" style="width: 80%; height: 20%;"></textarea>
+  <script>
+    $(document).ready(function () {
+      var counter = 0;
+      var poll = function () {
+        $.getJSON('/poll/' + counter, function (response) {
+          counter = response.count;
+          var elem = $('#output');
+          elem.text(elem.text() + response.append);
+          poll();
+        });
+      }
+      poll();
+    });
+  </script>
+</body>
+
+</html>
