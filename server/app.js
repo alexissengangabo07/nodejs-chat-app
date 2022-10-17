@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
     }
     else if (req.url === "/message" && req.method === "GET") {
         res.writeHead(200, headers);
-        res.write("Salut, Vous etes sur la route MESSAGE");
+        res.write("MESSAGESalut, Vous etes sur la route MESSAGE");
         res.end();
     }
     else {
