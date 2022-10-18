@@ -5,10 +5,10 @@ import * as api from "../../api/messages";
 const Form = () => {
     let [messageInput, setMessageInput] = useState('');
 
-    const handleMessage = async(e) => {
+    const handleMessage = async (e) => {
         e.preventDefault();
         console.log(messageInput);
-        await api.createMessage({username: 'alexnew', message: messageInput, dateTime: new Date()});
+        await api.createMessage({ username: 'alexnew', message: messageInput, dateTime: new Date() });
         // console.log(data);
     }
 
@@ -17,15 +17,15 @@ const Form = () => {
             <div className='form-container'>
                 <form onSubmit={handleMessage}>
                     <div>
-                        <textarea name="message" className="textarea-message" onChange={(e) => {setMessageInput(e.target.value)}} placeholder='Tapez votre message'></textarea>
+                        <textarea name="message" className="textarea-message" onChange={(e) => { setMessageInput(e.target.value) }} placeholder='Tapez votre message'></textarea>
                     </div>
-                <div>
-                    <input type="submit" value="Envoyer" />
-                </div>
-        </form>
+                    <div>
+                        <input className='Envoye' type="submit" value="Envoyer" />
+                    </div>
+                </form>
             </div >
         </>
-            )
+    )
 }
 
 export default Form

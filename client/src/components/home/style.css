@@ -19,3 +19,22 @@
     height: 30px;
     outline: none;
 }
+.Envoye{
+    background-color: rgb(96, 109, 126);
+    color: wheat;
+    height: 40px;
+    width: 80px;
+    border-radius: 10px;
+    border: solid rgb(173, 168, 168);
+    cursor: pointer;
+    font-weight: bold;
+}
+.Envoye:hover{
+    color: white;
+    cursor:pointer;
+}
+.textarea-message{
+    height:75px ;
+    border-radius: 10px;
+    border: solid rgb(173, 168, 168);
+}
