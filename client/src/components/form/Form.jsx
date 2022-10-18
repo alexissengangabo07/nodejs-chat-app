@@ -28,12 +28,12 @@ const Form = () => {
 
                             <div class="msg-bubble">
                                 <div class="msg-info">
-                                    <div class="msg-info-name">BOT</div>
+                                    <div class="msg-info-name">Bon</div>
                                     <div class="msg-info-time">12:45</div>
                                 </div>
 
                                 <div class="msg-text">
-                                    Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
+                                    Salut! bienvenu chez nous. 😄
                                 </div>
                             </div>
                         </div>
@@ -46,12 +46,12 @@ const Form = () => {
 
                             <div class="msg-bubble">
                                 <div class="msg-info">
-                                    <div class="msg-info-name">Sajad</div>
+                                    <div class="msg-info-name">Obedi</div>
                                     <div class="msg-info-time">12:46</div>
                                 </div>
 
                                 <div class="msg-text">
-                                    You can change your name in JS section!
+                                    Tu peux me dire ce que je peux faire?!
                                 </div>
                             </div>
                         </div>
