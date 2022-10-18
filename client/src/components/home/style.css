@@ -38,6 +38,8 @@
 
 .textarea-message {
     height: 75px;
+    width: 96%;
+    align-items: center;
     border-radius: 10px;
     border: solid rgb(173, 168, 168);
 }
