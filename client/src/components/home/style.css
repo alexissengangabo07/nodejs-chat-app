@@ -19,7 +19,8 @@
     height: 30px;
     outline: none;
 }
-.Envoye{
+
+.Envoye {
     background-color: rgb(96, 109, 126);
     color: wheat;
     height: 40px;
@@ -29,12 +30,67 @@
     cursor: pointer;
     font-weight: bold;
 }
-.Envoye:hover{
+
+.Envoye:hover {
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
-.textarea-message{
-    height:75px ;
+
+.textarea-message {
+    height: 75px;
     border-radius: 10px;
     border: solid rgb(173, 168, 168);
+}
+
+.msger-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.msger-chat::-webkit-scrollbar {
+    width: 6px;
+}
+
+.msger-chat::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+.msger-chat::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+}
+
+.msg {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.msg:last-of-type {
+    margin: 0;
+}
+
+.msg-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background: #ddd;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.msg-bubble {
+    max-width: 450px;
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--left-msg-bg);
+}
+
+.msg-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
