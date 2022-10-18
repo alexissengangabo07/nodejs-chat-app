@@ -15,14 +15,7 @@ const Form = () => {
     return (
         <>
             <div className='form-container'>
-                <form onSubmit={handleMessage}>
-                    <div>
-                        <textarea name="message" className="textarea-message" onChange={(e) => { setMessageInput(e.target.value) }} placeholder='Tapez votre message'></textarea>
-                    </div>
-                    <div>
-                        <input className='Envoye' type="submit" value="Envoyer" />
-                    </div>
-                </form>
+              
 
                 <section>
 
@@ -64,6 +57,14 @@ const Form = () => {
                         </div>
                     </main>
                 </section>
+                <form onSubmit={handleMessage}>
+                    <div>
+                        <textarea name="message" className="textarea-message" onChange={(e) => { setMessageInput(e.target.value) }} placeholder='Tapez votre message'></textarea>
+                    </div>
+                    <div>
+                        <input className='Envoye' type="submit" value="Envoyer" />
+                    </div>
+                </form>
             </div >
         </>
     )
