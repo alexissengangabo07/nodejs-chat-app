@@ -8,13 +8,13 @@ const Home = ({ handleUsername }) => {
     return (
         <div className='container'>
             <div>
-                <FaRegUserCircle size={60} />
+                <FaRegUserCircle color='white' size={60} />
                 <form onSubmit={e => { e.preventDefault(); navigate("/message"); }}>
                     <div>
-                        <input type="text" onChange={e => handleUsername(e.target.value)} placeholder="Enter your username" />
+                        <input type="text" onChange={e => handleUsername(e.target.value)} placeholder="Enter your username" className='username-input' />
                     </div>
                     <div>
-                        <input type="submit" value="Connectez-vous" />
+                        <input type="submit" value="Connectez-vous" className='connect-button' />
                     </div>
                 </form>
             </div>
