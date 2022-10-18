@@ -2,67 +2,63 @@ import http from 'http';
 import fs from 'fs';
 import url from 'url';
 
-var messages = ["testing"];
-var clients = [];
+const PORT = process.env.PORT || 5000;
 
-const server = http.createServer((req, res) => {
-    var url_parts = url.parse(req.url);
-    console.log(url_parts);
-    if (url_parts.pathname == '/') {
-        // file serving
-        fs.readFile('./index.html', function (err, data) {
-            res.end(data);
-        });
-    } else if (url_parts.pathname.substr(0, 5) == '/poll') {
-        // polling code here
+const server = http.createServer();
 
-
-        var count = url_parts.pathname.replace(/[^0-9]*/, '');
-        console.log(count);
-        if (messages.length > count) {
-            res.end(JSON.stringify({
-                count: messages.length,
-                append: messages.slice(count).join("")
-            }));
-        }
-        else if (url_parts.pathname.substr(0, 5) == '/msg/') {
-            // message receiving
-            var msg = unescape(url_parts.pathname.substr(5));
-            messages.push(msg);
-            while (clients.length > 0) {
-                var client = clients.pop();
-                client.end(JSON.stringify({
-                    count: messages.length,
-                    append: msg + ""
-                }));
-            }
-            res.end();
-        }
-        else {
-            clients.push(res);
-        }
-
-
-
-    }
-});
-
-server.on('request', (req, res) => {
-    console.log("Server request");
-
+server.on("request", (req, res) => {
+    const urlparse = url.parse(req.url, true);
     const headers = {
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE",
+        "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, OPTIONS",
         "Access-Control-Max-Age": 2592000
     };
 
-    fs.readFile('index.html', (err, data) => {
-        if (err) throw err;
-        // res.writeHead(200, { 'Content-Type': 'text/html' });
-        // res.write(data);
-        // return res.end();
-        res.end(data);
-    });
+    if (req.method === "GET" && urlparse.pathname === "/home") {
+        res.writeHead(200, headers);
+        res.write("Salut, Vous etes sur la route ACCEUIL");
+        res.end();
+    }
+    else if (req.method === "POST" && urlparse.pathname === "/message") {
+
+        fs.readFile('./messages.json', (err, data) => {
+            if (err) throw err;
+            res.writeHead(200, headers);
+            res.write(data);
+            let oldMessages = JSON.parse(data);
+
+            let newMessage = {
+                username: "new",
+                message: "new message",
+                dateTime: "2022-11-10T09:30:00"
+            };
+            // console.log(oldMessages);
+            let messages = oldMessages.concat(newMessage);
+            fs.writeFile('./messages.json', JSON.stringify(messages), (err) => {
+                if (err) throw err;
+                console.log('Data written to file avec success');
+                res.write('OKAY DONNEE INSEREE AVEC SUCCESS');
+                res.end();
+            });
+        });
+    }
+    else if (req.method === "GET" && urlparse.pathname === "/message") {
+        fs.readFile('./messages.json', (err, data) => {
+            if (err) throw err;
+            res.writeHead(200, headers);
+            res.write(data);
+            res.end();
+        });
+    }
+    else {
+        res.writeHead(404, headers);
+        res.end(JSON.stringify({ message: "Route non defini" }));
+    }
 });
 
-server.listen(8000, () => console.log("Connected Hello World!"));
+server.on('data', data => {
+    console.log('first')
+});
+
+server.listen(PORT, () => console.log("Connected Hello World!"));
